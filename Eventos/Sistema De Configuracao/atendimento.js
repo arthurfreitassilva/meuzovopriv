@@ -67,7 +67,11 @@ module.exports = {
                 tickets.set("horarioAbertura", aberturaBR);
                 tickets.set("horarioFechamento", fechamentoBR);
 
-                await Atendimentohorario(interaction, client);
+                // Primeiro responder ao modal, depois atualizar
+                await interaction.reply({
+                    content: "✅ Horário de atendimento configurado com sucesso!",
+                    ephemeral: true
+                });
             }
         }    
     }        
