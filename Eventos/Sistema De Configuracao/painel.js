@@ -949,17 +949,7 @@ module.exports = {
                     await interaction.editReply({ content: `${Emojis.get('negative_dreamm67')} Não foi possível remover o usuário. Verifique o ID!` });
                 }
             }
-        }
-    } catch (error) {
-        console.error('Erro ao processar interação:', error);
-        if (!interaction.replied && !interaction.deferred) {
-            await interaction.reply({ content: `${Emojis.get('negative_dreamm67')} Ocorreu um erro ao processar sua solicitação.`, ephemeral: true }).catch(() => {});
-        } else if (interaction.deferred) {
-            await interaction.editReply({ content: `${Emojis.get('negative_dreamm67')} Ocorreu um erro ao processar sua solicitação.` }).catch(() => {});
-        }
-    }
-});
-
+            }
 
             if (interaction.customId == 'notifyuser') {
                 if (!interaction.member.roles.cache.has(configuracao.get('ConfigRoles.cargoadm')) && !interaction.member.roles.cache.has(configuracao.get('ConfigRoles.cargosup'))) return interaction.reply({ content: `${Emojis.get(`negative_dreamm67`)} Você não tem permissão para fazer isso!`, ephemeral: true });
