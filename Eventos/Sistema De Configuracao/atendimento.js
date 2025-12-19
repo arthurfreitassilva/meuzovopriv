@@ -62,13 +62,22 @@ module.exports = {
                     });
                     return;
                 }
+                
                 const aberturaBR = moment.tz(abertura, "HH:mm", "America/Sao_Paulo").format("HH:mm");
                 const fechamentoBR = moment.tz(fechamento, "HH:mm", "America/Sao_Paulo").format("HH:mm");
                 tickets.set("horarioAbertura", aberturaBR);
                 tickets.set("horarioFechamento", fechamentoBR);
 
-                // Primeiro responder ao modal, depois atualizar
-                await interaction.reply({
+                // Defer a interação para evitar timeout
+                if (!interaction.deferred && !interaction.replied) {
+                    await interaction.deferUpdate().catch(() => {});
+                }
+
+                // Atualizar o painel com os novos horários
+                await Atendimentohorario(interaction, client);
+
+                // Enviar mensagem de confirmação
+                await interaction.followUp({
                     content: "✅ Horário de atendimento configurado com sucesso!",
                     ephemeral: true
                 });
