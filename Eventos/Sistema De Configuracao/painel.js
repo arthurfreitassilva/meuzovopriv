@@ -649,14 +649,8 @@ module.exports = {
             }
 
             
-
-client.on('interactionCreate', async (interaction) => {
-    // Ignora interações que não são botão, select menu ou modal
-    if (!interaction.isButton() && !interaction.isStringSelectMenu() && !interaction.isModalSubmit()) return;
-
-    try {
-    // Manipula o botão PainelStaff
-    if (interaction.isButton() && interaction.customId === 'PainelStaff') {
+            // Manipula o botão PainelStaff
+            if (interaction.isButton() && interaction.customId === 'PainelStaff') {
         if (!interaction.member.roles.cache.has(configuracao.get('ConfigRoles.cargoadm')) && !interaction.member.roles.cache.has(configuracao.get('ConfigRoles.cargosup'))) {
             // Check if the interaction is already acknowledged
             if (interaction.replied || interaction.deferred) {
