@@ -203,31 +203,6 @@ module.exports = {
 
             }
 
-
-
-            client.on('interactionCreate', async interaction => {
-    if (interaction.isButton()) {
-        await handleButtonInteraction(interaction, client);
-    }
-});
-
-client.on('interactionCreate', async interaction => {
-    if (interaction.isButton()) {
-        try {
-            await handleButtonInteraction(interaction, client);
-        } catch (error) {
-            console.error(`Erro no interactionCreate (button): ${error}`);
-        }
-    } else if (interaction.isModalSubmit()) {
-        try {
-            await handleModalSubmit(interaction);
-        } catch (error) {
-            console.error(`Erro no interactionCreate (modal): ${error}`);
-        }
-    }
-});
-
-
             if (interaction.customId == '0-89du0awd8awdaw8daw') {
 
                 let TITULO = interaction.fields.getTextInputValue('tokenMP');
