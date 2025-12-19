@@ -73,7 +73,7 @@ async function Painel(interaction, client, config = { email: "" }) {
     const row3 = new ActionRowBuilder().addComponents(
       new ButtonBuilder().setCustomId("painelpersonalizar").setLabel("Aparência").setEmoji("1379907510080634962").setStyle(ButtonStyle.Secondary),
       new ButtonBuilder().setCustomId("gerenciarconfigs").setLabel("Definições").setEmoji("1377455293595648061").setStyle(ButtonStyle.Secondary),
-      new ButtonBuilder().setCustomId("ecloud").setLabel("DreamCloud").setEmoji("1383399698370662471").setStyle(ButtonStyle.Secondary),
+      new ButtonBuilder().setCustomId("ecloud").setLabel("⚡ Alpha Store Cloud ⚡").setEmoji("1383399698370662471").setStyle(ButtonStyle.Secondary),
       new ButtonBuilder().setCustomId("configavançadas24").setLabel("Proteção").setEmoji("1383399536008888443").setStyle(ButtonStyle.Secondary)
     );
 

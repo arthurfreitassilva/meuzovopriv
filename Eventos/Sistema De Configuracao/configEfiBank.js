@@ -83,7 +83,7 @@ module.exports = {
                             .setStyle(2),
                         new ButtonBuilder()
                             .setCustomId("ecloud")
-                            .setLabel("DreamCloud")
+                            .setLabel("⚡ Alpha Store Cloud ⚡")
                             .setEmoji("<:cloud:1383399698370662471>")
                             .setStyle(2),
                         new ButtonBuilder()

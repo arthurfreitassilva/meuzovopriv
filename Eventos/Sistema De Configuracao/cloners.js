@@ -12,7 +12,7 @@ module.exports = {
         if (customId === "panelclonerslaoq") {
             const modal = new ModalBuilder()
                 .setCustomId("panelclonermodal")
-                .setTitle("Dream Clone");
+                .setTitle("⚡ Alpha Store Clone ⚡");
 
             const originalInput = new TextInputBuilder()
                 .setCustomId("original")
