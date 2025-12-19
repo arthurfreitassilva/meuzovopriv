@@ -1,0 +1,39 @@
+{
+    "tickets": {
+        "aparencia": {
+            "title": "⚡ Alpha Store ⚡",
+            "description": "**Olá, seja bem-vindo(a) a central de atendimento da Portal Store. Após solicitar um atendimento, aguarde um integrante da nossa equipe responde-lo(a).**\nSe não receber uma resposta de imediato, pedimos que aguarde.",
+            "color": "#000000",
+            "banner": "https://cdn.discordapp.com/attachments/1081427946071404544/1451346988905009438/Gemini_Generated_Image_7m6b4x7m6b4x7m6b.png?ex=6945d7b6&is=69448636&hm=89214c2178ac6d94a7aca67527b655c7bcc2546cbb1c7f49c9e150af22def7df&"
+        },
+        "funcoes": {
+            "Suporte": {
+                "nome": "Suporte",
+                "predescricao": "Preciso de ajuda com um problema",
+                "descricao": "Canal destinado para solicitar ajuda, relatar problemas ou tirar dúvidas sobre o servidor, serviços"
+            },
+            "Vendas": {
+                "nome": "Vendas",
+                "predescricao": "Quero informações sobre produtos ou serviços",
+                "descricao": "Utilize esta função para consultar preços, planos, formas de pagamento ou esclarecer dúvidas antes"
+            },
+            "Sugestões": {
+                "nome": "Sugestões",
+                "predescricao": "Tenho uma ideia ou sugestão",
+                "descricao": "Espaço dedicado para enviar sugestões, melhorias ou ideias que possam ajudar no crescimento e na qu"
+            },
+            "Denúncias": {
+                "nome": "Denúncias",
+                "predescricao": "Quero denunciar uma situação",
+                "descricao": "Use esta função para denunciar comportamentos inadequados, infrações às regras ou qualquer situação"
+            }
+        },
+        "messageid": [
+            {
+                "msgid": "1451348134545330206",
+                "channelid": "1450970838697246935",
+                "guildid": "1444399150593474662"
+            }
+        ]
+    }
+}
