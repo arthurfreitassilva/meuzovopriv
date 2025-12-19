@@ -13,7 +13,10 @@ async function CreateTicket(interaction, valor) {
     const statusHorario = tickets.get("statushorario");
     const horarioAbertura = tickets.get("horarioAbertura") || `Não configurado`;
     const horarioFechamento = tickets.get("horarioFechamento") || `Contacte o owner para ele configurar`;
-    const tempoatualtimebr24 = moment().tz("America/Sao_Paulo").format("HH:mm");
+    
+    // Obter o horário atual em formato HH:mm no fuso horário de São Paulo
+    const agora = moment().tz("America/Sao_Paulo");
+    const tempoatualtimebr24 = agora.format("HH:mm");
 
     const embed24 = new EmbedBuilder()
         .setAuthor({ name: 'Sistema De Horario', iconURL: 'https://cdn.discordapp.com/emojis/1262197032458649682.png?size=2048' })
@@ -22,12 +25,35 @@ async function CreateTicket(interaction, valor) {
         .setFooter({ text: `${interaction.guild.name}`, iconURL: `https://cdn.discordapp.com/emojis/1197546471017427004.png?size=2048` })
         .setTimestamp();
 
-    if (statusHorario && (tempoatualtimebr24 < horarioAbertura || tempoatualtimebr24 > horarioFechamento)) {
-        return interaction.reply({
-            content: `${interaction.user}`,
-            embeds: [embed24],
-            ephemeral: true
-        });
+    // Verificar se o horário de atendimento está ativo e se os horários estão configurados
+    if (statusHorario && horarioAbertura !== 'Não configurado' && horarioFechamento !== 'Contacte o owner para ele configurar') {
+        // Converter os horários para minutos desde meia-noite para comparação correta
+        const [horaAtual, minutoAtual] = tempoatualtimebr24.split(':').map(Number);
+        const [horaAbertura, minutoAbertura] = horarioAbertura.split(':').map(Number);
+        const [horaFechamento, minutoFechamento] = horarioFechamento.split(':').map(Number);
+        
+        const minutosAtual = horaAtual * 60 + minutoAtual;
+        const minutosAbertura = horaAbertura * 60 + minutoAbertura;
+        const minutosFechamento = horaFechamento * 60 + minutoFechamento;
+        
+        // Verificar se está fora do horário de atendimento
+        let dentroDoHorario = false;
+        
+        if (minutosAbertura <= minutosFechamento) {
+            // Horário normal (ex: 08:00 às 18:00)
+            dentroDoHorario = minutosAtual >= minutosAbertura && minutosAtual <= minutosFechamento;
+        } else {
+            // Horário que atravessa meia-noite (ex: 22:00 às 02:00)
+            dentroDoHorario = minutosAtual >= minutosAbertura || minutosAtual <= minutosFechamento;
+        }
+        
+        if (!dentroDoHorario) {
+            return interaction.reply({
+                content: `${interaction.user}`,
+                embeds: [embed24],
+                ephemeral: true
+            });
+        }
     }
 
     let msg = ``;
