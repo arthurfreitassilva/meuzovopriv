@@ -822,6 +822,36 @@
             "url": "https://discord.gg/nCgPWBPV8U",
             "expiresTimestamp": null,
             "uses": 0
+        },
+        {
+            "code": "U2XaXSFb",
+            "temporary": false,
+            "maxAge": 604800,
+            "maxUses": 0,
+            "inviterId": "826530018943434832",
+            "targetUser": null,
+            "targetApplication": null,
+            "targetType": null,
+            "channelId": "1450970829990133901",
+            "createdTimestamp": 1766012794079,
+            "url": "https://discord.gg/U2XaXSFb",
+            "expiresTimestamp": 1766617594000,
+            "uses": 0
+        },
+        {
+            "code": "kBMtrbf2Cc",
+            "temporary": false,
+            "maxAge": 0,
+            "maxUses": 0,
+            "inviterId": "826530018943434832",
+            "targetUser": null,
+            "targetApplication": null,
+            "targetType": null,
+            "channelId": "1450970829990133901",
+            "createdTimestamp": 1766012800868,
+            "url": "https://discord.gg/kBMtrbf2Cc",
+            "expiresTimestamp": null,
+            "uses": 0
         }
     ]
 }
