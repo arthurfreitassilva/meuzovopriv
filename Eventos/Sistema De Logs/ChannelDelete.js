@@ -39,7 +39,7 @@ module.exports = {
             const aplicarPunicao = (acao, member) => {
 
                 const embed = new EmbedBuilder()
-                    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+                    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
                     .setColor(configuracao.get('Cores.Principal') || '0cd4cc')
                     .setTitle(`Canal Excluído`)
                     .addFields(

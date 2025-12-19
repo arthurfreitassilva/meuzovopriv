@@ -15,7 +15,7 @@ module.exports = {
                 let member = await guild.members.fetch(newGuild.ownerId);
                 
                 const embed = new EmbedBuilder()
-                    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+                    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
                     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
                     .setTitle(`URL Personalizada Alterada`)
                     .setFields(

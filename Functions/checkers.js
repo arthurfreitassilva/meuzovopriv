@@ -4,7 +4,7 @@
     async function Checkertlgd(interaction, client) {
         const embed = new EmbedBuilder()
         .setColor(configuracao.get(`Cores.Principal`) || '313838')
-        .setTitle('Painel de Ferramentas - DreamPRO')
+        .setTitle('Painel de Ferramentas - ⚡ Alpha Store ⚡')
         .setDescription(`
 **Bem-vindo ao seu painel de ferramentas!**
 
@@ -20,7 +20,7 @@ Clique em um botão abaixo para acessar a ferramenta desejada!
             { name: '`🛠️` Dica', value: 'Use as ferramentas com responsabilidade para garantir a segurança do seu servidor.', inline: false },
             { name: '`🔗` Suporte', value: '[Entre no nosso Discord](https://discord.gg/aplicativos)', inline: true }
         )
-        .setFooter({ text: `DreamPRO • ${interaction.guild.name}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
+        .setFooter({ text: `⚡ Alpha Store ⚡ • ${interaction.guild.name}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
         .setTimestamp();
 
         const row1 = new ActionRowBuilder()

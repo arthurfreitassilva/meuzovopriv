@@ -129,7 +129,7 @@ async function handleModalSubmit(interaction) {
                 }
             )
             .setFooter({
-                text: "Sistema de Notificação | DreamPro!",
+                text: "Sistema de Notificação | ⚡ Alpha Store ⚡!",
                 iconURL:
                     "https://cdn.discordapp.com/avatars/1362091002239782912/f451048f2149bf4d9c0a78b7cff37442.webp"
             })

@@ -174,7 +174,7 @@ client.on('interactionCreate', async interaction => {
                 await interaction.deferReply({ flags: MessageFlags.Ephemeral }).catch(() => {});
 
                 const guild = interaction.guild;
-                const categoryName = 'Logs Administrativas - DreamPro';
+                const categoryName = 'Logs Administrativas - ⚡ Alpha Store ⚡';
 
                 let category = guild.channels.cache.find(c => c.name === categoryName && c.type === ChannelType.GuildCategory);
                 if (!category) {

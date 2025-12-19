@@ -695,7 +695,7 @@ client.on('interactionCreate', async (interaction) => {
                 .setColor('#313838')
                 .setTitle('Painel Administrativo Staff')
                 .setDescription('-# > `🎨` **Aqui você pode selecionar uma opção abaixo para gerenciar o ticket, gerencie membros com permissão no ticket, crie call e aproveite ao máximo o nosso sistema disponível apenas para administradores!**')
-                .setFooter({ text: `DreamPro`, iconURL: interaction.user.displayAvatarURL() });
+                .setFooter({ text: `⚡ Alpha Store ⚡`, iconURL: interaction.user.displayAvatarURL() });
 
             const selectMenu = new StringSelectMenuBuilder()
                 .setCustomId('painel_staff_select')
@@ -838,7 +838,7 @@ client.on('interactionCreate', async (interaction) => {
                 const manageCallEmbed = new EmbedBuilder()
                     .setColor('#313838')
                     .setDescription(`> Canal de voz __${voiceChannel}__ criado com sucesso!\n-# **Selecione uma opção para gerenciar a call.**`)
-                    .setFooter({ text: `DreamPro`, iconURL: interaction.user.displayAvatarURL() });
+                    .setFooter({ text: `⚡ Alpha Store ⚡`, iconURL: interaction.user.displayAvatarURL() });
 
                 const manageCallMenu = new StringSelectMenuBuilder()
                     .setCustomId(`manage_call_${voiceChannel.id}`)

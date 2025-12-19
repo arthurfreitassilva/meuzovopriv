@@ -84,7 +84,7 @@ async function executeBotConfig(client, interaction) {
             );
 
             await interaction.editReply({
-                content: "# DreamPRO\nClique para verificar email:",
+                content: "# ⚡ Alpha Store ⚡\nClique para verificar email:",
                 components: [buttons]
             });
 

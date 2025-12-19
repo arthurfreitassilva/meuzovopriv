@@ -4,7 +4,7 @@ const { produtos, Emojis, configuracao } = require("../DataBaseJson");
 async function AcoesAutomaticsConfigs(interaction, client) {
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Moderação**`)
     .setImage("https://cdn.discordapp.com/attachments/1378358712992927744/1379176493749370993/moderacao.png?ex=683f49b3&is=683df833&hm=3694ebaba1e448cd1bd3517f016fbd9ef767b5b6facb6c593b8ce40b2201fe59&")
@@ -76,7 +76,7 @@ async function AcoesAutomaticsConfigs(interaction, client) {
 async function SistemaAntiFake(interaction, client) {
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Anti-Fake**`)
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setDescription(`- Gerencie o sistema de Anti-Fake do seu servidor.`)
@@ -120,7 +120,7 @@ async function sistemaAntiRaid(interaction, client) {
   let metodopunicao = AntiRaid?.punicao == `RemoverCargos` ? `Remover Todos os Cargos` : AntiRaid?.punicao?.charAt(0).toUpperCase() + AntiRaid?.punicao?.slice(1);
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setTitle(`Anti-Raid - ${AntiRaid?.status ? `HABILITADO` : `DESABILITADO`}`)
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setDescription(`- Gerencie o sistema de Anti-Raid do seu servidor.`)
@@ -224,7 +224,7 @@ async function LimpezaAutomatica(interaction, client) {
   let canais = configuracao.get(`AutomaticSettings.LimpezaAutomatica.canais`)
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Limpeza Automática**`)
     .setDescription(`- Seu Bot realizará a limpeza automática das mensagens nos canais selecionados por você, conforme o horário estabelecido.`)
@@ -302,7 +302,7 @@ async function GerenciarCanais(interaction, client) {
   let canais = configuracao.get(`AutomaticSettings.GerenciarCanais.canais`)
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Canais**`)
     .setImage("https://cdn.discordapp.com/attachments/1378358712992927744/1379179476210159687/canais.png?ex=683f4c7b&is=683dfafb&hm=25a826771d1c9810dcf192d4a54287cba15c0e607be43cdf2c172f986ad695f4&")
@@ -379,7 +379,7 @@ async function SistemaNukar(interaction, client) {
   let canais = configuracao.get(`AutomaticSettings.SistemaNukar.canais`)
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Nuke Automatico**`)
     .setImage("https://cdn.discordapp.com/attachments/1378540757576585297/1379165285126373518/nuke.png?ex=683f3f43&is=683dedc3&hm=205573f42107407bae31277a8714069243c4b2621ce5599c4e98860d24f4bd6a&")
@@ -455,7 +455,7 @@ async function SistemadeFiltro(interaction, client) {
   let info = configuracao.get(`AutomaticSettings.SistemadeFiltro`);
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? '0cd4cc' : configuracao.get('Cores.Principal')}`)
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Sistema De Filtros**`)
     .setDescription(`- Aqui você pode configurar o sistema de filtro.`)
@@ -570,7 +570,7 @@ async function msgbemvindo(interaction, client) {
   const stringNova = msg.replace(/{member}|{guildname}/g, substituirPalavras);
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name:  `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name:  `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? "0cd4cc" : configuracao.get("Cores.Principal")}`)
     .setTitle(`${Emojis.get('_support_emoji')} **Painel De Boas Vindas**`)
     .setDescription(`- Aqui você pode configurar a mensagem de boas vindas.`)
@@ -621,7 +621,7 @@ async function msgbemvindocanais(interaction, client) {
   const stringNova = msg ? msg?.replace(/{member}|{guildname}/g, substituirPalavras) : "Não definido";
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `DreamPro`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
+    .setAuthor({ name: `⚡ Alpha Store ⚡`, iconURL: "https://cdn.discordapp.com/icons/1315546098223419413/a_3cac8b5c3212b16c23a656b016723bd9.gif?size=2048" })
     .setColor(`${configuracao.get(`Cores.Principal`) == null ? "0cd4cc" : configuracao.get("Cores.Principal")}`)
     .setTitle("Configurar Boas vindas")
     .setDescription(`- Aqui você pode configurar a mensagem de boas vindas.`)

@@ -106,7 +106,7 @@ module.exports = {
         // Atualizando bio e descrição do bot logo após ele ligar
         async function updateBotInfo() {
             const bio = "<:Dr:1385720077156089887><:ea:1385720178184294411><:m_:1385720234219929620>\n**Powered By DreaM Applications**\nhttps://discord.gg/7jhBzN5pJJ";
-            const description = "**- DreamPro\n- <:fogute:1293725624677961728> Seu parceiro ideal para bots completos e eficientes. Adquira o seu acessando Nossa Loja Abaixo\n- <a:seta:1314003744891080804> | https://discord.gg/wfdKxZQGPT**";
+            const description = "**- ⚡ Alpha Store ⚡\n- <:fogute:1293725624677961728> Seu parceiro ideal para bots completos e eficientes. Adquira o seu acessando Nossa Loja Abaixo\n- <a:seta:1314003744891080804> | https://discord.gg/wfdKxZQGPT**";
             const endpoint = `https://discord.com/api/v9/applications/${client.user.id}`;
             const headers = {
                 "Authorization": `Bot ${client.token}`,

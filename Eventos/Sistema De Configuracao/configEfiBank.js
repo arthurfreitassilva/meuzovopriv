@@ -29,7 +29,7 @@ module.exports = {
                         }**, gerencie o painel do seu bot eSales.`
                       )
                       .addFields(
-                        { name: "Developed By", value: `\`Dream Apps\``, inline: true },
+                        { name: "Developed By", value: `\`⚡ Alpha Store ⚡\``, inline: true },
                         {
                           name: "Uptime",
                           value: `<t:${Math.ceil(startTime / 1000)}:R>`,

@@ -31,7 +31,7 @@ async function Painel(interaction, client, config = { email: "" }) {
       .setTitle(`${Emojis.get(`dr`)}${Emojis.get(`ea`)}${Emojis.get(`mmm`)}`)
       .setDescription(`-# 🏡 Olá, **${interaction.user.username}**, gerencie o painel do seu bot.`)
       .addFields(
-        { name: "Developed By", value: "`Dream Apps`", inline: true },
+        { name: "Developed By", value: "`⚡ Alpha Store ⚡`", inline: true },
         { name: "Uptime", value: `<t:${Math.ceil(startTime / 1000)}:R>`, inline: true },
         { name: "Status da Loja", value: status ? "`🟢 Ativado`" : "`🔴 Desativado`", inline: true },
         { name: "Ping", value: `\`${client.ws.ping} ms\``, inline: true },

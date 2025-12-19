@@ -4,7 +4,7 @@ const { configuracao } = require("../DataBaseJson");
 async function Cloners(interaction, client) {
     const embed = new EmbedBuilder()
         .setColor(configuracao.get(`Cores.Principal`) || '313838')
-        .setTitle('Painel de Clonagem - DreamPRO')
+        .setTitle('Painel de Clonagem - ⚡ Alpha Store ⚡')
         .setDescription(`
 **Automatize e proteja seu servidor com as ferramentas de clonagem!**
 
@@ -17,7 +17,7 @@ Escolha uma das opções abaixo para começar:
             { name: '`🛠️` Dica', value: 'Use a clonagem com responsabilidade para evitar perdas de dados e garantir a segurança do seu servidor.', inline: false },
             { name: '`🔗` Suporte', value: '[Entre no nosso Discord](https://discord.gg/aplicativos)', inline: true }
         )
-        .setFooter({ text: `DreamPRO • ${interaction.guild.name}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
+        .setFooter({ text: `⚡ Alpha Store ⚡ • ${interaction.guild.name}`, iconURL: interaction.guild.iconURL({ dynamic: true }) })
         .setTimestamp();
 
     const row2 = new ActionRowBuilder()
