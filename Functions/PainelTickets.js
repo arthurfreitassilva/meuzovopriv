@@ -2,6 +2,11 @@ const { ButtonBuilder, ActionRowBuilder, AttachmentBuilder, EmbedBuilder } = req
 const { tickets } = require("../DataBaseJson");
 
 async function painelTicket(interaction) {
+    // Defer imediatamente para evitar timeout
+    if (!interaction.deferred && !interaction.replied) {
+        await interaction.deferUpdate().catch(() => {});
+    }
+    
     const atualstatus24 = tickets.get("statusmsg") || false;
 
     if (atualstatus24) {
