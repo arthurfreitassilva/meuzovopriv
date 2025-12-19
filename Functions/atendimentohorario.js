@@ -3,6 +3,10 @@ const { JsonDatabase } = require('wio.db');
 const { tickets, configuracao } = require("../DataBaseJson/index")
 
 async function Atendimentohorario(interaction, client) {
+    // Defer imediatamente para evitar timeout
+    if (!interaction.deferred && !interaction.replied) {
+        await interaction.deferUpdate().catch(() => {});
+    }
 
     const atendimentohorario24 = tickets.get(`statushorario`) || false;
 
@@ -21,22 +25,19 @@ async function Atendimentohorario(interaction, client) {
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
         .setCustomId("onoffatendimentohorario24")
-        .setLabel(atendimentohorario24 ? "On" : "Off")
-        .setEmoji(atendimentohorario24 ? '1248300851282579552' : '1248300875978641419')
+        .setLabel(atendimentohorario24 ? "✅ On" : "❌ Off")
         .setStyle(atendimentohorario24 ? 3 : 4),
         new ButtonBuilder()
         .setCustomId("confighorarioatendimento24")
-        .setLabel("Configurar")
-        .setEmoji("1309962605162528928")
+        .setLabel("⚙️ Configurar")
         .setStyle(2),
         new ButtonBuilder()
         .setCustomId("painelconfigticket")
-        .setLabel('Voltar')
-        .setEmoji(`1178068047202893869`)
+        .setLabel('◀️ Voltar')
         .setStyle(2),
     )
 
-    await interaction.update({ embeds: [embed], components: [row], ephemeral: true })
+    await interaction.editReply({ embeds: [embed], components: [row] }).catch(console.error)
 
 }
 
