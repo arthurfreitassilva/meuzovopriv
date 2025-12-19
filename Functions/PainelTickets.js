@@ -161,7 +161,7 @@ async function painelTicket(interaction) {
                 .setStyle(2)
         );
 
-    await interaction.update({ content: '', files: [], embeds: [embed], components: [row2, row3, row4] });
+    await interaction.editReply({ content: '', files: [], embeds: [embed], components: [row2, row3, row4] }).catch(console.error);
 }
 
 module.exports = {
