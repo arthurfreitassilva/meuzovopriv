@@ -94,21 +94,39 @@ async function CreateTicket(interaction, valor) {
         name: `${valor}・${interaction.user.username}・${interaction.user.id}`,
         type: ChannelType.PrivateThread,
         reason: 'Ticket aberto',
-        permissionOverwrites: [
-            {
-                id: configuracao.get('ConfigRoles.cargoadm'),
-                allow: [PermissionFlagsBits.SendMessagesInThreads],
-            },
-            {
-                id: configuracao.get('ConfigRoles.cargosup'),
-                allow: [PermissionFlagsBits.SendMessagesInThreads],
-            },
-            {
-                id: interaction.user.id,
-                allow: [PermissionFlagsBits.SendMessagesInThreads],
-            },
-        ],
     });
+
+    // Adicionar membros à thread privada
+    try {
+        await thread.members.add(interaction.user.id);
+        
+        const adminRoleId = configuracao.get('ConfigRoles.cargoadm');
+        const supportRoleId = configuracao.get('ConfigRoles.cargosup');
+        
+        // Adicionar membros com cargo de admin
+        if (adminRoleId) {
+            const adminRole = interaction.guild.roles.cache.get(adminRoleId);
+            if (adminRole) {
+                const adminMembers = interaction.guild.members.cache.filter(m => m.roles.cache.has(adminRoleId));
+                for (const [, member] of adminMembers) {
+                    await thread.members.add(member.id).catch(() => {});
+                }
+            }
+        }
+        
+        // Adicionar membros com cargo de suporte
+        if (supportRoleId) {
+            const supportRole = interaction.guild.roles.cache.get(supportRoleId);
+            if (supportRole) {
+                const supportMembers = interaction.guild.members.cache.filter(m => m.roles.cache.has(supportRoleId));
+                for (const [, member] of supportMembers) {
+                    await thread.members.add(member.id).catch(() => {});
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Erro ao adicionar membros à thread:', error);
+    }
 
     const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
