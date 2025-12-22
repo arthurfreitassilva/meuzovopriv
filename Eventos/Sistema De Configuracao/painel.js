@@ -182,8 +182,7 @@ module.exports = {
                 if (BANNER !== '') {
                     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
                     if (!urlRegex.test(BANNER)) {
-                        tickets.set(`tickets.funcoes.${NOME}.banner`, BANNER)
-                        return interaction.reply({ message: dd, content: `${Emojis.get(`negative_dreamm67`)} Você escolheu incorretamente a URL do banner!`, ephemeral: true });
+                        return interaction.reply({ content: `${Emojis.get(`negative_dreamm67`)} Você escolheu incorretamente a URL do banner!`, ephemeral: true });
                     } else {
                         tickets.set(`tickets.funcoes.${NOME}.banner`, BANNER)
                     }
