@@ -446,11 +446,10 @@ function setupEcloudInteractions(client) {
                 await interaction.reply({ content: "❌ Ocorreu um erro ao processar a interação. Tente novamente.", ephemeral: true });
             }
         }
-    }, { once: false }); // Ensure this listener is only added once
-
-    await interaction.update({ content: ``, embeds: [embed], ephemeral: true, components: [row2, row3, row4] });
+    });
 }
 
 module.exports = {
-    ecloud
+    ecloud,
+    setupEcloudInteractions
 };
