@@ -46,6 +46,10 @@ const { Emojis } = require("../../DataBaseJson");
 const { UpdateAllMessagesProduct } = require("../../Functions/SenderMessagesOrUpdates.js");
 const { ensureDeferred, safeReply } = require("../../Functions/InteractionHelper");
 
+// Cache temporário para tickets assumidos (resetado ao reiniciar o bot)
+const ticketsAssumidos = new Map();
+
+
 
 module.exports = {
     name: 'interactionCreate',
