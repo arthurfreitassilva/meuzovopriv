@@ -117,7 +117,7 @@ async function Checkarmensagensticket(client) {
 
         const option = {
             label: `${item.nome}`,
-            description: `${item.predescricao == undefined ? item.predescricao : item.predescricao}`,
+            description: `${item.descricao == undefined ? item.predescricao : item.descricao}`,
             value: `${element}`,
             ...item.emoji == undefined ? {} : { emoji: `${item.emoji}` }
         };
