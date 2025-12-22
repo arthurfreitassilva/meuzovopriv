@@ -48,8 +48,11 @@ module.exports = {
         const ultimoIndice = interaction.channel.name.lastIndexOf("・");
         const userId = interaction.channel.name.slice(ultimoIndice + 1);
 
-        // Fecha o ticket
-        await interaction.channel.delete().catch(() => {});
+        // Responde primeiro antes de deletar
+        await interaction.reply({
+            content: `${Emojis.get("positive_dream")} Ticket fechado! O canal será deletado em alguns segundos...`,
+            ephemeral: true
+        });
 
         // Tenta avisar o usuário no privado
         try {
@@ -63,5 +66,10 @@ module.exports = {
         } catch (err) {
             // Silencia erro caso o user não permita DMs
         }
+
+        // Fecha o ticket após 3 segundos
+        setTimeout(() => {
+            interaction.channel.delete().catch(() => {});
+        }, 3000);
     }
 };
