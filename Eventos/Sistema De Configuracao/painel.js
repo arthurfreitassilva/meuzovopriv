@@ -1025,7 +1025,9 @@ module.exports = {
 
             if (interaction.customId == 'assumir') {
                 let ticketId = interaction.message.id;
-                if (tickets[ticketId] && tickets[ticketId].hasStaffInteracted) {
+                
+                // Verificar se o ticket já foi assumido usando o Map
+                if (ticketsAssumidos.has(ticketId)) {
                     return interaction.reply({ content: `${Emojis.get(`negative_dreamm67`)} Este ticket já foi atendido.`, ephemeral: true });
                 }
             
@@ -1065,10 +1067,16 @@ module.exports = {
                         .setColor('#2b2d31')
                         .setDescription(`👋 | Olá <@!${ultimosNumeros}>, Seu Ticket foi Assumido Pelo Staff ${staffMember}.`);
             
-                    tickets[ticketId] = { hasStaffInteracted: true, hasPokeStaffBeenClicked: false, staffMemberId: staffMember.id };
+                    // Armazenar no Map ao invés de um objeto tickets inexistente
+                    ticketsAssumidos.set(ticketId, { 
+                        hasStaffInteracted: true, 
+                        hasPokeStaffBeenClicked: false, 
+                        staffMemberId: staffMember.id 
+                    });
             
-                    await interaction.editReply({ embeds: [confirmationEmbed222] });
+                    await interaction.channel.send({ embeds: [confirmationEmbed222] });
                 } catch (error) {
+                    console.error('Erro ao assumir ticket:', error);
                     await interaction.followUp({ content: `${Emojis.get(`negative_dreamm67`)} | Ocorreu um erro ao tentar assumir o ticket.`, ephemeral: true });
                 }
             }
