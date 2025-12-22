@@ -6,7 +6,6 @@ const Discord = require("discord.js")
 
 async function configauth(interaction, client) {
 
-
     const row1 = new ActionRowBuilder()
         .addComponents(
             new ButtonBuilder()
@@ -14,8 +13,6 @@ async function configauth(interaction, client) {
                 .setEmoji(`1249510835735498814`)
                 .setLabel('Cargo Verificado')
                 .setStyle(1),
-
-
         )
 
     const row2 = new ActionRowBuilder()
@@ -30,7 +27,6 @@ async function configauth(interaction, client) {
              .setLabel('Configurações Obrigatorias')
              .setEmoji('1236318155056349224')
              .setStyle(1),
-
         )
 
     const row3 = new ActionRowBuilder()
@@ -42,7 +38,15 @@ async function configauth(interaction, client) {
                 .setStyle(2)
         )
 
-        
+    if (interaction.message == undefined) {
+        interaction.reply({ embeds: [], components: [row1, row2, row3], content: `Oque deseja configurar?` })
+    } else {
+        interaction.update({ embeds: [], components: [row1, row2, row3], content: `Oque deseja configurar?` })
+    }
+}
+
+// Handler global - deve ser registrado apenas uma vez no index.js ou eventos
+function setupConfigAuthInteractions(client) {
 client.on("interactionCreate", async interaction => {
     if (!interaction.isButton()) return;
 
