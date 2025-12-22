@@ -252,7 +252,11 @@ client.on('interactionCreate', async interaction => {
             if (interaction.customId === 'extensaoapenasparaogeradorkkkk') {
                 const selectedValue = interaction.values[0];
                 if (selectedValue === 'geradorextensao') {
-                    await configgenpainelzika(interaction, client);
+                    // Função removida - adicionar implementação se necessário
+                    await interaction.reply({ 
+                        content: '⚠️ Esta funcionalidade está temporariamente indisponível.',
+                        ephemeral: true 
+                    });
                 }
             }
         }
