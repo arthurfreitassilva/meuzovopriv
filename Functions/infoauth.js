@@ -1,4 +1,4 @@
-const { ApplicationCommandType, EmbedBuilder, Webhook, ActionRowBuilder, ButtonBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
+const { ApplicationCommandType, EmbedBuilder, Webhook, ActionRowBuilder, ButtonBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, MessageFlags } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 const client = require("discord.js")
@@ -90,230 +90,215 @@ async function infoauth(interaction, client) {
 
         )
 
-client.on("interactionCreate", async interaction => {
-    if (!interaction.isButton()) return;
-
-    if (interaction.customId === "svid") {
-        await interaction.deferReply({ ephemeral: true });
-
-        const fs = require('fs');
-        const path = require('path');
-        const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
-
-        try {
-            // Pegar o ID do servidor diretamente da interação
-            const guildId = interaction.guildId;
-
-            // Atualizar o arquivo configauth.json
-            const config = require(configPath);
-            config.guild_id = guildId;
-            fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-
-            await interaction.editReply(`**✅ ID do servidor atualizado com sucesso!**\n\`${guildId}\`\n🔔 *Talvez não apareça na embed do eCloud, tente reiniciar o bot.*`);
-        } catch (error) {
-            console.error("Erro ao atualizar o ID do servidor:", error);
-            await interaction.editReply("**❌ Ocorreu um erro ao atualizar o ID do servidor.**");
-        }
-    }
-});
-
-
-        client.on("interactionCreate", async interaction => {
-            if (!interaction.isButton()) return;
-            
-            // Verifique se o botão pressionado é o "webedit"
-            if (interaction.customId === "clientid") {
-                await interaction.deferReply({ ephemeral: true });
-        
-                // Simplesmente enviar uma mensagem pedindo a nova URL do webhook
-                await interaction.followUp("**🔄 Envie o id do BOT.**");
-        
-                // Aguarde uma nova interação (mensagem do usuário)
-                const filter = m => m.author.id === interaction.user.id;
-                const response = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000 });
-        
-                // Verifique se a mensagem foi recebida
-                if (response.size === 0) {
-                    await interaction.editReply("**🔔 Tempo esgotado. Por favor, tente novamente.**");
-                    return;
-                }
-        
-                const newID = response.first().content;
-        
-                // Atualize o arquivo de configuração com a nova URL do webhook
-                const fs = require('fs');
-                const path = require('path');
-                const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
-                
-                try {
-                    const config = require(configPath);
-                    config.clientid = newID;
-                    fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-                
-                    await interaction.editReply("** ID atualizado com sucesso.**\n\`Talvez, ela não apareça na embed do seu eCloud, tente reiniciar seu bot.\`\n🔔 **Lembre-se este é o id do BOT!**");
-                } catch (error) {
-                    console.error("Erro ao atualizar o arquivo de id do bot:", error);
-                    await interaction.editReply("** Ocorreu um erro ao atualizar o ID.**");
-                }
-            }
-        });
-        client.on("interactionCreate", async interaction => {
-            if (!interaction.isButton()) return;
-            
-            // Verifique se o botão pressionado é o "webedit"
-            if (interaction.customId === "secret") {
-                await interaction.deferReply({ ephemeral: true });
-        
-                // Simplesmente enviar uma mensagem pedindo a nova URL do webhook
-                await interaction.followUp("**🔄 Envie o SECRET do BOT.**");
-        
-                // Aguarde uma nova interação (mensagem do usuário)
-                const filter = m => m.author.id === interaction.user.id;
-                const response = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000 });
-        
-                // Verifique se a mensagem foi recebida
-                if (response.size === 0) {
-                    await interaction.editReply("**🔔 Tempo esgotado. Por favor, tente novamente.**");
-                    return;
-                }
-        
-                const newSecret = response.first().content;
-        
-                // Atualize o arquivo de configuração com a nova URL do webhook
-                const fs = require('fs');
-                const path = require('path');
-                const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
-                
-                try {
-                    const config = require(configPath);
-                    config.secret = newSecret;
-                    fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-                
-                    await interaction.editReply("** SECRET atualizado com sucesso.**\n\`Talvez, ele não apareça na embed do seu eCloud, tente reiniciar seu bot.\`");
-                } catch (error) {
-                    console.error("Erro ao atualizar o secret:", error);
-                    await interaction.editReply("** Ocorreu um erro ao atualizar o SECRET.**");
-                }
-            }
-        });
-        client.on("interactionCreate", async interaction => {
-            if (!interaction.isButton()) return;
-            
-            // Verifique se o botão pressionado é o "webedit"
-            if (interaction.customId === "idsv") {
-                await interaction.deferReply({ ephemeral: true });
-        
-                // Simplesmente enviar uma mensagem pedindo a nova URL do webhook
-                await interaction.followUp("**🔄 Envie o ID do SERVIDOR.**");
-        
-                // Aguarde uma nova interação (mensagem do usuário)
-                const filter = m => m.author.id === interaction.user.id;
-                const response = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000 });
-        
-                // Verifique se a mensagem foi recebida
-                if (response.size === 0) {
-                    await interaction.editReply("**🔔 Tempo esgotado. Por favor, tente novamente.**");
-                    return;
-                }
-        
-                const newSV = response.first().content;
-        
-                // Atualize o arquivo de configuração com a nova URL do webhook
-                const fs = require('fs');
-                const path = require('path');
-                const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
-                
-                try {
-                    const config = require(configPath);
-                    config.guild_id = newSV;
-                    fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-                
-                    await interaction.editReply("** SERVIDOR atualizado com sucesso.**\n\`Talvez, ele não apareça na embed do seu eCloud, tente reiniciar seu bot.\`");
-                } catch (error) {
-                    console.error("Erro ao atualizar o id guild:", error);
-                    await interaction.editReply("** Ocorreu um erro ao atualizar o SERVIDOR.**");
-                }
-            } 
-        });  
-
-
-client.on("interactionCreate", async interaction => {
-    if (!interaction.isButton()) return;
-
-    if (interaction.customId === "subdominio") {
-
-        const modal = new ModalBuilder()
-            .setCustomId('subdominio_modal')
-            .setTitle('Setar Dominio');
-
-        const subdominioInput = new TextInputBuilder()
-            .setCustomId('subdominio_input')
-            .setLabel('Digite o nome do subdomínio')
-            .setStyle(TextInputStyle.Short)
-            .setPlaceholder('Coloque Apenas o nome, sem https://')
-            .setRequired(true);
-
-        modal.addComponents(
-            new ActionRowBuilder().addComponents(subdominioInput)
-        );
-
-        await interaction.showModal(modal);
-    }
-});
-
-
-
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isModalSubmit()) return;
-
-    if (interaction.customId === 'subdominio_modal') {
-        const subdominio = interaction.fields.getTextInputValue('subdominio_input');
-
-        const fs = require('fs');
-        const path = require('path');
-        const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
-        const squarePath = path.join(__dirname, '..', 'squarecloud.app');
-
-        try {
-            // Criar a URL completa
-            const url = `https://${subdominio}.squareweb.app`;
-
-            // Atualizar o configauth.json
-            const config = require(configPath);
-            config.url = url;
-            fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-
-            // Ler e editar o conteúdo do squarecloud.app
-            let squareContent = fs.readFileSync(squarePath, 'utf8');
-
-            // Substituir a linha do SUBDOMAIN com regex
-            squareContent = squareContent.replace(
-                /^SUBDOMAIN=.*$/m,
-                `SUBDOMAIN=${subdominio}`
-            );
-
-            fs.writeFileSync(squarePath, squareContent);
-
-            await interaction.reply({
-                content: `**✅ Subdomínio atualizado com sucesso!**\nURL configurada: ${url}\nArquivo \`squarecloud.app\` também foi atualizado!`,
-                ephemeral: true
-            });
-
-        } catch (error) {
-            console.error("Erro ao atualizar o subdomínio:", error);
-            await interaction.reply({
-                content: "**❌ Ocorreu um erro ao atualizar o subdomínio ou o arquivo squarecloud.app.**",
-                ephemeral: true
-            });
-        }
-    }
-});
-
-
-    await interaction.update({ content: ``, embeds: [embed], ephemeral: true, components: [row2, row4, row3] })
+    await interaction.update({ content: ``, embeds: [embed], components: [row2, row4, row3] })
 
 }
 
+// Handler global - deve ser registrado apenas uma vez no index.js ou eventos
+function setupInfoAuthInteractions(client) {
+    client.on("interactionCreate", async interaction => {
+        if (!interaction.isButton()) return;
+
+        if (interaction.customId === "svid") {
+            // Use flags ao invés de ephemeral
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
+            const fs = require('fs');
+            const path = require('path');
+            const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
+
+            try {
+                // Pegar o ID do servidor diretamente da interação
+                const guildId = interaction.guildId;
+
+                // Atualizar o arquivo configauth.json
+                const config = require(configPath);
+                config.guild_id = guildId;
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+
+                await interaction.editReply(`**✅ ID do servidor atualizado com sucesso!**\n\`${guildId}\`\n🔔 *Talvez não apareça na embed do eCloud, tente reiniciar o bot.*`);
+            } catch (error) {
+                console.error("Erro ao atualizar o ID do servidor:", error);
+                await interaction.editReply("**❌ Ocorreu um erro ao atualizar o ID do servidor.**");
+            }
+        }
+
+        if (interaction.customId === "clientid") {
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+    
+            // Simplesmente enviar uma mensagem pedindo a nova URL do webhook
+            await interaction.followUp("**🔄 Envie o id do BOT.**");
+    
+            // Aguarde uma nova interação (mensagem do usuário)
+            const filter = m => m.author.id === interaction.user.id;
+            const response = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000 }).catch(() => null);
+    
+            // Verifique se a mensagem foi recebida
+            if (!response || response.size === 0) {
+                await interaction.editReply("**🔔 Tempo esgotado. Por favor, tente novamente.**");
+                return;
+            }
+    
+            const newID = response.first().content;
+    
+            // Atualize o arquivo de configuração com a nova URL do webhook
+            const fs = require('fs');
+            const path = require('path');
+            const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
+            
+            try {
+                const config = require(configPath);
+                config.clientid = newID;
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+            
+                await interaction.editReply("** ID atualizado com sucesso.**\n\`Talvez, ela não apareça na embed do seu eCloud, tente reiniciar seu bot.\`\n🔔 **Lembre-se este é o id do BOT!**");
+            } catch (error) {
+                console.error("Erro ao atualizar o arquivo de id do bot:", error);
+                await interaction.editReply("** Ocorreu um erro ao atualizar o ID.**");
+            }
+        }
+
+        if (interaction.customId === "secret") {
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+    
+            // Simplesmente enviar uma mensagem pedindo a nova URL do webhook
+            await interaction.followUp("**🔄 Envie o SECRET do BOT.**");
+    
+            // Aguarde uma nova interação (mensagem do usuário)
+            const filter = m => m.author.id === interaction.user.id;
+            const response = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000 }).catch(() => null);
+    
+            // Verifique se a mensagem foi recebida
+            if (!response || response.size === 0) {
+                await interaction.editReply("**🔔 Tempo esgotado. Por favor, tente novamente.**");
+                return;
+            }
+    
+            const newSecret = response.first().content;
+    
+            // Atualize o arquivo de configuração com a nova URL do webhook
+            const fs = require('fs');
+            const path = require('path');
+            const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
+            
+            try {
+                const config = require(configPath);
+                config.secret = newSecret;
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+            
+                await interaction.editReply("** SECRET atualizado com sucesso.**\n\`Talvez, ele não apareça na embed do seu eCloud, tente reiniciar seu bot.\`");
+            } catch (error) {
+                console.error("Erro ao atualizar o secret:", error);
+                await interaction.editReply("** Ocorreu um erro ao atualizar o SECRET.**");
+            }
+        }
+
+        if (interaction.customId === "idsv") {
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+    
+            // Simplesmente enviar uma mensagem pedindo a nova URL do webhook
+            await interaction.followUp("**🔄 Envie o ID do SERVIDOR.**");
+    
+            // Aguarde uma nova interação (mensagem do usuário)
+            const filter = m => m.author.id === interaction.user.id;
+            const response = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000 }).catch(() => null);
+    
+            // Verifique se a mensagem foi recebida
+            if (!response || response.size === 0) {
+                await interaction.editReply("**🔔 Tempo esgotado. Por favor, tente novamente.**");
+                return;
+            }
+    
+            const newSV = response.first().content;
+    
+            // Atualize o arquivo de configuração com a nova URL do webhook
+            const fs = require('fs');
+            const path = require('path');
+            const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
+            
+            try {
+                const config = require(configPath);
+                config.guild_id = newSV;
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+            
+                await interaction.editReply("** SERVIDOR atualizado com sucesso.**\n\`Talvez, ele não apareça na embed do seu eCloud, tente reiniciar seu bot.\`");
+            } catch (error) {
+                console.error("Erro ao atualizar o id guild:", error);
+                await interaction.editReply("** Ocorreu um erro ao atualizar o SERVIDOR.**");
+            }
+        }
+
+        if (interaction.customId === "subdominio") {
+
+            const modal = new ModalBuilder()
+                .setCustomId('subdominio_modal')
+                .setTitle('Setar Dominio');
+
+            const subdominioInput = new TextInputBuilder()
+                .setCustomId('subdominio_input')
+                .setLabel('Digite o nome do subdomínio')
+                .setStyle(TextInputStyle.Short)
+                .setPlaceholder('Coloque Apenas o nome, sem https://')
+                .setRequired(true);
+
+            modal.addComponents(
+                new ActionRowBuilder().addComponents(subdominioInput)
+            );
+
+            await interaction.showModal(modal);
+        }
+    });
+
+    client.on('interactionCreate', async interaction => {
+        if (!interaction.isModalSubmit()) return;
+
+        if (interaction.customId === 'subdominio_modal') {
+            const subdominio = interaction.fields.getTextInputValue('subdominio_input');
+
+            const fs = require('fs');
+            const path = require('path');
+            const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
+            const squarePath = path.join(__dirname, '..', 'squarecloud.app');
+
+            try {
+                // Criar a URL completa
+                const url = `https://${subdominio}.squareweb.app`;
+
+                // Atualizar o configauth.json
+                const config = require(configPath);
+                config.url = url;
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+
+                // Ler e editar o conteúdo do squarecloud.app (se existir)
+                if (fs.existsSync(squarePath)) {
+                    let squareContent = fs.readFileSync(squarePath, 'utf8');
+
+                    // Substituir a linha do SUBDOMAIN com regex
+                    squareContent = squareContent.replace(
+                        /^SUBDOMAIN=.*$/m,
+                        `SUBDOMAIN=${subdominio}`
+                    );
+
+                    fs.writeFileSync(squarePath, squareContent);
+                }
+
+                await interaction.reply({
+                    content: `**✅ Subdomínio atualizado com sucesso!**\nURL configurada: ${url}\nArquivo \`squarecloud.app\` também foi atualizado!`,
+                    flags: MessageFlags.Ephemeral
+                });
+
+            } catch (error) {
+                console.error("Erro ao atualizar o subdomínio:", error);
+                await interaction.reply({
+                    content: "**❌ Ocorreu um erro ao atualizar o subdomínio ou o arquivo squarecloud.app.**",
+                    flags: MessageFlags.Ephemeral
+                });
+            }
+        }
+    });
+}
+
 module.exports = {
-    infoauth
+    infoauth,
+    setupInfoAuthInteractions
 }
