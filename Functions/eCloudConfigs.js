@@ -47,81 +47,73 @@ async function configauth(interaction, client) {
 
 // Handler global - deve ser registrado apenas uma vez no index.js ou eventos
 function setupConfigAuthInteractions(client) {
-// Handler global - deve ser registrado apenas uma vez no index.js ou eventos
-function setupConfigAuthInteractions(client) {
-client.on("interactionCreate", async interaction => {
-    if (!interaction.isButton()) return;
+    client.on("interactionCreate", async interaction => {
+        if (!interaction.isButton()) return;
 
-    // Verifique se o botão pressionado é o "cargoauth"
-    if (interaction.customId === "cargoauth") {
-        await interaction.deferReply({ ephemeral: true });
+        // Verifique se o botão pressionado é o "cargoauth"
+        if (interaction.customId === "cargoauth") {
+            await interaction.deferReply({ ephemeral: true });
 
-        // Criando o Select Menu com todos os cargos do servidor
-        const roles = interaction.guild.roles.cache.filter(role => role.id !== interaction.guild.id); // Exclui o cargo @everyone
-        const options = roles.map(role => {
-            return {
-                label: role.name,
-                value: role.id,
-            };
-        });
-
-        // Criar a linha do select menu
-        const row = new ActionRowBuilder().addComponents(
-            new StringSelectMenuBuilder()
-                .setCustomId('select_role')
-                .setPlaceholder('Selecione o cargo de verificado')
-                .addOptions(options)
-        );
-
-        // Enviar o select menu para o usuário
-        await interaction.followUp({
-            content: "**🔄 Selecione o cargo de verificado:**",
-            components: [row]
-        });
-    }
-});
-
-// Captura da seleção do cargo do usuário
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isStringSelectMenu()) return;
-
-    if (interaction.customId === 'select_role') {
-        const selectedRoleID = interaction.values[0];
-
-        const fs = require('fs');
-        const path = require('path');
-        const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
-
-        try {
-            // Atualizar o arquivo de configuração com o cargo selecionado
-            const config = require(configPath);
-            config.role = selectedRoleID;
-            fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-
-            // Resposta para o usuário
-            await interaction.update({
-                content: `**✅ Cargo de verificado atualizado com sucesso!**\n\`O cargo do bot deve estar ACIMA do cargo de verificado!\``,
-                components: [], // Remove os componentes após a seleção
+            // Criando o Select Menu com todos os cargos do servidor
+            const roles = interaction.guild.roles.cache.filter(role => role.id !== interaction.guild.id); // Exclui o cargo @everyone
+            const options = roles.map(role => {
+                return {
+                    label: role.name,
+                    value: role.id,
+                };
             });
-        } catch (error) {
-            console.error("Erro ao atualizar o cargo:", error);
-            await interaction.update({
-                content: "**❌ Ocorreu um erro ao atualizar o CARGO.**",
-                components: [], // Remove os componentes após o erro
+
+            // Criar a linha do select menu
+            const row = new ActionRowBuilder().addComponents(
+                new StringSelectMenuBuilder()
+                    .setCustomId('select_role')
+                    .setPlaceholder('Selecione o cargo de verificado')
+                    .addOptions(options)
+            );
+
+            // Enviar o select menu para o usuário
+            await interaction.followUp({
+                content: "**🔄 Selecione o cargo de verificado:**",
+                components: [row]
             });
         }
-    }
-});
+    });
 
-    if (interaction.message == undefined) {
-        interaction.reply({ embeds: [], components: [row1, row2, row3], content: `Oque deseja configurar?` })
-    } else {
-        interaction.update({ embeds: [], components: [row1, row2, row3], content: `Oque deseja configurar?` })
-    }
+    // Captura da seleção do cargo do usuário
+    client.on('interactionCreate', async interaction => {
+        if (!interaction.isStringSelectMenu()) return;
 
+        if (interaction.customId === 'select_role') {
+            const selectedRoleID = interaction.values[0];
+
+            const fs = require('fs');
+            const path = require('path');
+            const configPath = path.join(__dirname, '..', 'DataBaseJson', 'configauth.json');
+
+            try {
+                // Atualizar o arquivo de configuração com o cargo selecionado
+                const config = require(configPath);
+                config.role = selectedRoleID;
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
+
+                // Resposta para o usuário
+                await interaction.update({
+                    content: `**✅ Cargo de verificado atualizado com sucesso!**\n\`O cargo do bot deve estar ACIMA do cargo de verificado!\``,
+                    components: [], // Remove os componentes após a seleção
+                });
+            } catch (error) {
+                console.error("Erro ao atualizar o cargo:", error);
+                await interaction.update({
+                    content: "**❌ Ocorreu um erro ao atualizar o CARGO.**",
+                    components: [], // Remove os componentes após o erro
+                });
+            }
+        }
+    });
 }
 
 
 module.exports = {
-    configauth
+    configauth,
+    setupConfigAuthInteractions
 }
