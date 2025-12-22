@@ -929,6 +929,7 @@ module.exports = {
             }
 
             if (interaction.customId.startsWith('adicionar_usuario_call_modal_')) {
+                await interaction.deferReply({ ephemeral: true });
                 const voiceChannelId = interaction.customId.split('_')[4];
                 const voiceChannel = interaction.guild.channels.cache.get(voiceChannelId);
                 if (!voiceChannel || voiceChannel.type !== ChannelType.GuildVoice) {
@@ -950,6 +951,7 @@ module.exports = {
             }
 
             if (interaction.customId.startsWith('remover_usuario_call_modal_')) {
+                await interaction.deferReply({ ephemeral: true });
                 const voiceChannelId = interaction.customId.split('_')[4];
                 const voiceChannel = interaction.guild.channels.cache.get(voiceChannelId);
                 if (!voiceChannel || voiceChannel.type !== ChannelType.GuildVoice) {
