@@ -88,7 +88,11 @@ async function ecloud(interaction, client) {
                 .setStyle(2)
         );
 
-    // Single interactionCreate handler
+    await interaction.update({ content: ``, embeds: [embed], ephemeral: true, components: [row2, row3, row4] });
+}
+
+// Handler global de interações - deve ser registrado apenas uma vez no index.js ou eventos
+function setupEcloudInteractions(client) {
     client.on("interactionCreate", async interaction => {
         try {
             // Handle button interactions
