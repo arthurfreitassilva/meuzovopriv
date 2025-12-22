@@ -1128,10 +1128,15 @@ module.exports = {
                     }).format(now24);
             
                     let assumidoPor = 'Ninguém';
-                    if (tickets[interaction.message.id] && tickets[interaction.message.id].hasStaffInteracted) {
-                        const staffMemberId = tickets[interaction.message.id].staffMemberId;
-                        const staffMember = await interaction.guild.members.fetch(staffMemberId);
-                        assumidoPor = staffMember ? staffMember.user.tag : 'Desconhecido';
+                    const ticketData = ticketsAssumidos.get(interaction.message.id);
+                    if (ticketData && ticketData.hasStaffInteracted) {
+                        const staffMemberId = ticketData.staffMemberId;
+                        try {
+                            const staffMember = await interaction.guild.members.fetch(staffMemberId);
+                            assumidoPor = staffMember ? staffMember.user.tag : 'Desconhecido';
+                        } catch (error) {
+                            assumidoPor = 'Desconhecido';
+                        }
                     }
             
                     const embed24 = new Discord.EmbedBuilder()
