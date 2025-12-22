@@ -888,13 +888,21 @@ module.exports = {
         if (interaction.isModalSubmit()) {
             
             if (interaction.customId === 'adicionar_usuario_modal') {
+                await interaction.deferReply({ ephemeral: true });
                 const userId = interaction.fields.getTextInputValue('user_id');
                 try {
                     const user = await interaction.guild.members.fetch(userId);
-                    await interaction.channel.permissionOverwrites.edit(user, {
-                        ViewChannel: true,
-                        SendMessages: true
-                    });
+                    
+                    // Para threads, adicionar membro diretamente
+                    if (interaction.channel.isThread()) {
+                        await interaction.channel.members.add(user.id);
+                    } else {
+                        await interaction.channel.permissionOverwrites.edit(user, {
+                            ViewChannel: true,
+                            SendMessages: true
+                        });
+                    }
+                    
                     await interaction.editReply({ content: `${Emojis.get('confimed_emoji_emoji')} Usuário <@!${userId}> adicionado ao ticket!` });
                 } catch (error) {
                     await interaction.editReply({ content: `${Emojis.get('negative_dreamm67')} Não foi possível adicionar o usuário. Verifique o ID!` });
@@ -902,10 +910,18 @@ module.exports = {
             }
 
             if (interaction.customId === 'remover_usuario_modal') {
+                await interaction.deferReply({ ephemeral: true });
                 const userId = interaction.fields.getTextInputValue('user_id');
                 try {
                     const user = await interaction.guild.members.fetch(userId);
-                    await interaction.channel.permissionOverwrites.delete(user);
+                    
+                    // Para threads, remover membro diretamente
+                    if (interaction.channel.isThread()) {
+                        await interaction.channel.members.remove(user.id);
+                    } else {
+                        await interaction.channel.permissionOverwrites.delete(user);
+                    }
+                    
                     await interaction.editReply({ content: `${Emojis.get('confimed_emoji_emoji')} Usuário <@!${userId}> removido do ticket!` });
                 } catch (error) {
                     await interaction.editReply({ content: `${Emojis.get('negative_dreamm67')} Não foi possível remover o usuário. Verifique o ID!` });
