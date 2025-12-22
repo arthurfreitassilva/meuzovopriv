@@ -47,6 +47,8 @@ async function configauth(interaction, client) {
 
 // Handler global - deve ser registrado apenas uma vez no index.js ou eventos
 function setupConfigAuthInteractions(client) {
+// Handler global - deve ser registrado apenas uma vez no index.js ou eventos
+function setupConfigAuthInteractions(client) {
 client.on("interactionCreate", async interaction => {
     if (!interaction.isButton()) return;
 
