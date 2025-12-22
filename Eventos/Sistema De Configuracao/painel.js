@@ -1181,14 +1181,11 @@ module.exports = {
             
                     setTimeout(async () => {
     try {
-      
-
-    
-        const channelStillExists = await interaction.guild.channels.fetch(ticketChannel.id).catch(() => null);
+        const channelStillExists = await interaction.guild.channels.fetch(interaction.channel.id).catch(() => null);
         if (channelStillExists) {
             await channelStillExists.delete();
         } else {
-            console.log(`Canal ${ticketChannel.id} já foi deletado ou não existe.`);
+            console.log(`Canal ${interaction.channel.id} já foi deletado ou não existe.`);
         }
     } catch (error) {
         console.error('Erro ao deletar o canal:', error);
