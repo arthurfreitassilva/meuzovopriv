@@ -1,7 +1,7 @@
 const { ApplicationCommandType, InteractionType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, Events } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
-const { owner, url, clientid, secret, webhook_logs, role, guild_id } = require("../DataBaseJson/configauth.json");
+const { url, clientid, secret, webhook_logs, role, guild_id } = require("../DataBaseJson/configauth.json");
 const { JsonDatabase } = require("wio.db");
 const { produtos, configuracao, Emojis } = require("../DataBaseJson");
 const users = new JsonDatabase({ databasePath: "./DataBaseJson/users.json" });
