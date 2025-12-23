@@ -200,7 +200,7 @@ module.exports = {
                 await canal.send({ content });
             }
         
-            await interaction.update({ content: "**✔ | Mensagem enviada com sucesso!**",  });
+            await interaction.update({ content: "**✔ | Mensagem enviada com sucesso!**"});
         }
         // Resetar
         if (customId === "resetarcontent") {

@@ -43,7 +43,7 @@ module.exports = {
                 const row1 = new ActionRowBuilder()
                     .addComponents(selectaaa);
 
-                interaction.reply({ components: [row1], content: `Selecione o canal onde quer postar a mensagem.`, ephemeral: true, })
+                interaction.reply({ components: [row1], content: `Selecione o canal onde quer postar a mensagem.`, ephemeral: true})
 
 
                 if (a1 == '') a1 = '#0cd4cc'
@@ -92,7 +92,7 @@ module.exports = {
                 const row1 = new ActionRowBuilder()
                     .addComponents(selectaaa);
 
-                interaction.reply({ components: [row1], content: `Selecione o canal onde quer postar a mensagem.`, ephemeral: true, })
+                interaction.reply({ components: [row1], content: `Selecione o canal onde quer postar a mensagem.`, ephemeral: true})
 
             }
 

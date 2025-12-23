@@ -599,7 +599,7 @@ module.exports = {
                     const row1 = new ActionRowBuilder()
                         .addComponents(selectaaa);
 
-                    interaction.reply({ components: [row1], content: `Selecione o canal onde quer postar a mensagem.`, ephemeral: true, })
+                    interaction.reply({ components: [row1], content: `Selecione o canal onde quer postar a mensagem.`, ephemeral: true})
 
                 }
             }
@@ -1369,7 +1369,7 @@ module.exports = {
             if (interaction.customId.endsWith("autocleartempo")) {
                 const canalautoclear = await relikia.get("autoclear.channel");
                 const tempoclear = await relikia.get("autoclear.time")
-                await interaction.update({ embeds: [], content: 'Por favor, insira o tempo em segundos:', components: [],  });
+                await interaction.update({ embeds: [], content: 'Por favor, insira o tempo em segundos:', components: []});
 
                 const filter = m => m.author.id === interaction.user.id;
                 const timeCollector = interaction.channel.createMessageCollector({ filter, max: 1, time: 60000 });

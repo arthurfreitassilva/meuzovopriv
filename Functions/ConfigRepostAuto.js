@@ -63,7 +63,7 @@ async function AcoesRepostAutomatics(interaction, client) {
             .setStyle(1)
     )
 
-   await interaction.update({ content: ``, components: [row2, botoesvoltar], embeds: [embed],  })
+   await interaction.update({ content: ``, components: [row2, botoesvoltar], embeds: [embed]})
 }
 
 module.exports = {

@@ -50,7 +50,7 @@ module.exports = {
 
               )
 
-              await interaction.update({ embeds: [embed], components: [botoes],   })
+              await interaction.update({ embeds: [embed], components: [botoes]})
 
         }
 
@@ -86,7 +86,7 @@ module.exports = {
 
               )
 
-              await interaction.update({ embeds: [embed], components: [botoes],   })
+              await interaction.update({ embeds: [embed], components: [botoes]})
 
         }
 
@@ -119,7 +119,7 @@ module.exports = {
               .setStyle(2)
             )
 
-            await interaction.update({ embeds: [embed], components: [botoes],   })
+            await interaction.update({ embeds: [embed], components: [botoes]})
 
         }
 
@@ -304,7 +304,7 @@ await interaction.reply({ content: `O cargo para as keys foi alterado para <@&${
 
               )
 
-              await interaction.update({ embeds: [embed], components: [botoes],  })
+              await interaction.update({ embeds: [embed], components: [botoes]})
             }
 
             if (interaction.isButton() && interaction.customId === "criarservice") {
@@ -450,7 +450,7 @@ if (fs.existsSync(filePath)) {
 
               )
 
-              await interaction.update({ embeds: [embed], components: [botoes],  })
+              await interaction.update({ embeds: [embed], components: [botoes]})
 
     }
 
@@ -641,7 +641,7 @@ const files = fs.readdirSync(stockDirectory);
 
               )
 
-              await interaction.update({ embeds: [embed], components: [botoes],   })
+              await interaction.update({ embeds: [embed], components: [botoes]})
 
             }
 
@@ -747,7 +747,7 @@ const files = fs.readdirSync(stockDirectory);
 
               )
 
-              await interaction.update({ embeds: [embed], components: [botoes],   })
+              await interaction.update({ embeds: [embed], components: [botoes]})
 
             }
 

@@ -65,7 +65,7 @@ module.exports = {
                 .setStyle(2)
             )
         
-            await interaction.update({ embeds: [embed], components: [botoes, botoes2],  });
+            await interaction.update({ embeds: [embed], components: [botoes, botoes2]});
         }
 
             if (interaction.isButton() && interaction.customId === "toggle_sistema") { 
@@ -130,7 +130,7 @@ module.exports = {
                     .setStyle(2)
                 )
                     
-            await interaction.update({ embeds: [embed], components: [botoesAtualizados, botoes2Atualizados],  });
+            await interaction.update({ embeds: [embed], components: [botoesAtualizados, botoes2Atualizados]});
         }
                   
 

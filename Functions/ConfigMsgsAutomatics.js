@@ -51,7 +51,7 @@ async function AcoesMsgsAutomatics(interaction, client) {
       .setStyle(2),
   )
 
-  await interaction.update({ content: ``, components: [row2, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [row2, botoesvoltar], embeds: [embed]})
 }
 
 

@@ -71,7 +71,7 @@ async function AcoesAutomaticsConfigs(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, components: [select, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [select, botoesvoltar], embeds: [embed]})
 }
 async function SistemaAntiFake(interaction, client) {
 
@@ -112,7 +112,7 @@ async function SistemaAntiFake(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, components: [botao, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [botao, botoesvoltar], embeds: [embed]})
 }
 async function sistemaAntiRaid(interaction, client) {
 
@@ -217,7 +217,7 @@ async function sistemaAntiRaid(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, components: [botao, botao2, select, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [botao, botao2, select, botoesvoltar], embeds: [embed]})
 }
 async function LimpezaAutomatica(interaction, client) {
 
@@ -295,7 +295,7 @@ async function LimpezaAutomatica(interaction, client) {
   )
 
 
-  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed]})
 }
 async function GerenciarCanais(interaction, client) {
 
@@ -372,7 +372,7 @@ async function GerenciarCanais(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed]})
 }
 async function SistemaNukar(interaction, client) {
 
@@ -448,7 +448,7 @@ async function SistemaNukar(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed]})
 }
 async function SistemadeFiltro(interaction, client) {
 
@@ -556,7 +556,7 @@ async function SistemadeFiltro(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed],  })
+  await interaction.update({ content: ``, components: [row1, botoesvoltar], embeds: [embed]})
 }
 async function msgbemvindo(interaction, client) {
   let msg = configuracao.get(`Entradas.msg`);
@@ -608,7 +608,7 @@ async function msgbemvindo(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ components: [row2, botoesvoltar], content: ``, embeds: [embed],  });
+  await interaction.update({ components: [row2, botoesvoltar], content: ``, embeds: [embed]});
 }
 async function msgbemvindocanais(interaction, client) {
   let msg = configuracao.get(`Entradas.msg`);
@@ -659,7 +659,7 @@ async function msgbemvindocanais(interaction, client) {
       .setStyle(1)
   )
 
-  await interaction.update({ content: ``, embeds: [embed], components: [row1, botoesvoltar],  });
+  await interaction.update({ content: ``, embeds: [embed], components: [row1, botoesvoltar]});
 }
 
 

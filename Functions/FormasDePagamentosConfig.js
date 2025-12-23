@@ -147,7 +147,7 @@ async function EfiBankConfiguracao(client, interaction, a) {
     )
 
     if (a != 1) {
-        await interaction.update({ content: ``, embeds: [embed], components: [row, row2],  })
+        await interaction.update({ content: ``, embeds: [embed], components: [row, row2]})
     } else {
         await interaction.editReply({ content: ``, embeds: [embed], components: [row, row2], ephemeral: true })
     }
