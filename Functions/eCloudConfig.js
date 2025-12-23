@@ -250,6 +250,14 @@ function setupEcloudInteractions(client) {
                 }
 
                 if (interaction.customId === "continuar_verificacao") {
+                    // Gerar o link de autenticação OAuth2
+                    const uri = oauth.generateAuthUrl({
+                        clientId: clientid,
+                        clientSecret: secret,
+                        scope: ["identify", "guilds.join"],
+                        redirectUri: `${url}/auth/callback`
+                    });
+                    
                     const link = `${uri}`;
                     const botaoLink = new ActionRowBuilder().addComponents(
                         new ButtonBuilder()
