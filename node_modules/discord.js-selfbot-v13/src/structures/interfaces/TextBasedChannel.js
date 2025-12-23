@@ -10,7 +10,8 @@ const { setTimeout } = require('node:timers');
 const { s } = require('@sapphire/shapeshift');
 const Util = require('../../util/Util');
 const validateName = stringName =>
-  s.string
+  s
+    .string()
     .lengthGreaterThanOrEqual(1)
     .lengthLessThanOrEqual(32)
     .regex(/^[\p{Ll}\p{Lm}\p{Lo}\p{N}\p{sc=Devanagari}\p{sc=Thai}_-]+$/u)
@@ -272,9 +273,7 @@ class TextBasedChannel {
     );
     // Filter Bot
     botOrApplicationId = this.client.users.resolveId(botOrApplicationId);
-    const application = data.applications.find(
-      obj => obj.id == botOrApplicationId || obj.bot?.id == botOrApplicationId,
-    );
+    const application = data.applications.find(obj => obj.id == botOrApplicationId || obj.bot_id == botOrApplicationId);
     if (!application) {
       throw new Error('INVALID_APPLICATION_COMMAND', "Bot/Application doesn't exist");
     }
