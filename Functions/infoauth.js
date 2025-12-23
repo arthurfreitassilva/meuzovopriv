@@ -2,7 +2,7 @@ const { ApplicationCommandType, EmbedBuilder, Webhook, ActionRowBuilder, ButtonB
 const fs = require("fs");
 const path = require("path");
 const client = require("discord.js")
-const { owner, url, clientid, secret, webhook_logs, role, guild_id } = require("../DataBaseJson/configauth.json");
+const { url, clientid, secret, webhook_logs, role, guild_id } = require("../DataBaseJson/configauth.json");
 const { JsonDatabase } = require("wio.db");
 const users = new JsonDatabase({ databasePath: "./DataBaseJson/users.json" });
 const axios = require("axios");
