@@ -91,7 +91,7 @@ module.exports = {
                                 .setStyle(2)
                         );
 
-                    await interaction.update({ content: '', embeds: [embed], components: [actionRow, actionRow2], ephemeral: true });
+                    await interaction.update({ content: '', embeds: [embed], components: [actionRow, actionRow2],  });
                 }
             }
 
@@ -213,7 +213,7 @@ module.exports = {
                                 .setStyle(2)
                         );
 
-                    await interaction.update({ content: '', embeds: [embed], components: [actionRow, actionRow2], ephemeral: true });
+                    await interaction.update({ content: '', embeds: [embed], components: [actionRow, actionRow2],  });
                 }
             }
         } catch (error) {

@@ -27,7 +27,7 @@ module.exports = {
                     .setMaxValues(1);
 
                 const row = new ActionRowBuilder().addComponents(roleSelectMenu);
-                await interaction.update({ embeds: [], components: [row], ephemeral: true });
+                await interaction.update({ embeds: [], components: [row],  });
             }
             if (interaction.customId === "configurarlink") {
                 const modal = new ModalBuilder()

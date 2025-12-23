@@ -1369,7 +1369,7 @@ module.exports = {
             if (interaction.customId.endsWith("autocleartempo")) {
                 const canalautoclear = await relikia.get("autoclear.channel");
                 const tempoclear = await relikia.get("autoclear.time")
-                await interaction.update({ embeds: [], content: 'Por favor, insira o tempo em segundos:', components: [], ephemeral: true });
+                await interaction.update({ embeds: [], content: 'Por favor, insira o tempo em segundos:', components: [],  });
 
                 const filter = m => m.author.id === interaction.user.id;
                 const timeCollector = interaction.channel.createMessageCollector({ filter, max: 1, time: 60000 });
