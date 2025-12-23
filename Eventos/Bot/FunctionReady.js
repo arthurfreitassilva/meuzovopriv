@@ -12,6 +12,9 @@ const { ClearAutomatic, SystemLockAndUnlock, SystemNukedChannels } = require('..
 const { CheckarPunicoes } = require('../Sistema De Logs/NewMessage.js');
 const { UploadEmojis } = require('../../FunctionEmojis/EmojisFunction.js');
 const { TodosInvites } = require('./Entrada.js');
+const { setupEcloudInteractions } = require('../../Functions/eCloudConfig');
+const { setupConfigAuthInteractions } = require('../../Functions/eCloudConfigs');
+const { setupInfoAuthInteractions } = require('../../Functions/infoauth');
 const path = require('path');
 const fs = require('fs');
 
