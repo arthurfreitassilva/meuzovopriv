@@ -250,15 +250,36 @@ function setupEcloudInteractions(client) {
                 }
 
                 if (interaction.customId === "continuar_verificacao") {
-                    // Gerar o link de autenticação OAuth2
-                    const uri = oauth.generateAuthUrl({
-                        clientId: clientid,
-                        clientSecret: secret,
-                        scope: ["identify", "guilds.join"],
-                        redirectUri: `${url}/auth/callback`
-                    });
+                    // Carregar a configuração para pegar o link personalizado se existir
+                    const configPath = path.join(__dirname, "../DataBaseJson/configauth.json");
+                    let link;
                     
-                    const link = `${uri}`;
+                    try {
+                        const authConfig = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+                        
+                        // Usar o link personalizado se existir, caso contrário gerar um novo
+                        if (authConfig.linkverifybot) {
+                            link = authConfig.linkverifybot;
+                        } else {
+                            // Gerar o link de autenticação OAuth2
+                            link = oauth.generateAuthUrl({
+                                clientId: clientid,
+                                clientSecret: secret,
+                                scope: ["identify", "guilds.join"],
+                                redirectUri: `${url}/auth/callback`
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Erro ao carregar link de verificação:", error);
+                        // Fallback: gerar um novo link
+                        link = oauth.generateAuthUrl({
+                            clientId: clientid,
+                            clientSecret: secret,
+                            scope: ["identify", "guilds.join"],
+                            redirectUri: `${url}/auth/callback`
+                        });
+                    }
+                    
                     const botaoLink = new ActionRowBuilder().addComponents(
                         new ButtonBuilder()
                             .setLabel('Clique aqui para se Verificar')
