@@ -1,7 +1,6 @@
-    const { ApplicationCommandType, EmbedBuilder, Webhook, ActionRowBuilder, ButtonBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
+const { ApplicationCommandType, EmbedBuilder, Webhook, ActionRowBuilder, ButtonBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, MessageFlags } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
-const client = require("discord.js")
 const { url, clientid, secret, webhook_logs, role, guild_id } = require("../DataBaseJson/configauth.json");
 const { JsonDatabase } = require("wio.db");
 const users = new JsonDatabase({ databasePath: "./DataBaseJson/users.json" });
@@ -52,7 +51,7 @@ async function infosauth(interaction, client) {
         
     
         
-    await interaction.update({ content: ``, embeds: [embed], ephemeral: true, components: [row2] })
+    await interaction.update({ content: ``, embeds: [embed], components: [row2] })
 }
 
 

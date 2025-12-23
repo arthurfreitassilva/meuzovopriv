@@ -67,9 +67,6 @@ router.get("/auth/callback", async (req, res) => {
         return res.status(400).json({ message: "Código de autenticação ausente.", status: 400 });
     }
 
-    // Redireciona imediatamente
-    res.redirect(`https://ghostapi.squareweb.app/`);
-
     try {
         // Troca o código pelo token de acesso
         const tokenResponse = await axios.post(
@@ -80,7 +77,7 @@ router.get("/auth/callback", async (req, res) => {
                 code,
                 grant_type: 'authorization_code',
                 redirect_uri: `${url}/auth/callback`,
-                scope: 'identify'
+                scope: 'identify guilds.join'
             }),
             {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -108,49 +105,78 @@ router.get("/auth/callback", async (req, res) => {
             const ipInfoResponse = await axios.get(`https://ipinfo.io/${ip}/json`);
             const info = ipInfoResponse.data;
             localizacao = `${info.city || 'Cidade Desconhecida'}, ${info.region || 'Região'}, ${info.country || 'País'}`;
-        } catch {
+        } catch (ipError) {
+            console.error("Erro ao obter localização:", ipError);
             localizacao = 'Não foi possível localizar';
         }
 
+        // Tenta adicionar o usuário ao servidor e atribuir cargo
+        try {
+            // Adiciona o usuário ao servidor
+            await axios.put(
+                `https://discord.com/api/v10/guilds/${guild_id}/members/${user.id}`,
+                {
+                    access_token: tokenData.access_token
+                },
+                {
+                    headers: {
+                        Authorization: `Bot ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+        } catch (addError) {
+            console.log("Usuário já está no servidor ou não foi possível adicionar:", addError.response?.data || addError.message);
+        }
+
         // Pega os cargos atuais do membro
-        const memberData = await axios.get(`https://discord.com/api/v10/guilds/${guild_id}/members/${user.id}`, {
-            headers: {
-                Authorization: `Bot ${token}`
-            }
-        });
+        try {
+            const memberData = await axios.get(`https://discord.com/api/v10/guilds/${guild_id}/members/${user.id}`, {
+                headers: {
+                    Authorization: `Bot ${token}`
+                }
+            });
 
-        const currentRoles = memberData.data.roles;
+            const currentRoles = memberData.data.roles;
 
-        // Adiciona o novo cargo sem remover os existentes
-        const updatedRoles = [...new Set([...currentRoles, role])];
+            // Adiciona o novo cargo sem remover os existentes
+            const updatedRoles = [...new Set([...currentRoles, role])];
 
-        await axios.patch(`https://discord.com/api/v10/guilds/${guild_id}/members/${user.id}`, {
-            roles: updatedRoles
-        }, {
-            headers: {
-                Authorization: `Bot ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
+            await axios.patch(`https://discord.com/api/v10/guilds/${guild_id}/members/${user.id}`, {
+                roles: updatedRoles
+            }, {
+                headers: {
+                    Authorization: `Bot ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+        } catch (roleError) {
+            console.error("Erro ao atribuir cargo:", roleError.response?.data || roleError.message);
+        }
 
         // Envia log para o webhook
-        await axios.post(webhook_logs, {
-            content: `<@${user.id}>`,
-            embeds: [
-                new EmbedBuilder()
-                    .setTitle("✅ | Usuário Verificado")
-                    .setColor(0x000000)
-                    .addFields(
-                        { name: "👥 Usuário", value: `<@${user.id}>`, inline: true },
-                        { name: "🪐 IP do Usuário", value: `||${ip}||`, inline: true },
-                        { name: "📆 Conta Criada", value: `\`há ${idadeConta}\``, inline: true },
-                        {
-                            name: "🔐 Informações Adicionais",
-                            value: `- 🌍 Localização: ${localizacao}\n- 💻 Dispositivo: ${dispositivo}`
-                        }
-                    )
-            ]
-        });
+        try {
+            await axios.post(webhook_logs, {
+                content: `<@${user.id}>`,
+                embeds: [
+                    new EmbedBuilder()
+                        .setTitle("✅ | Usuário Verificado")
+                        .setColor(0x000000)
+                        .addFields(
+                            { name: "👥 Usuário", value: `<@${user.id}>`, inline: true },
+                            { name: "🪐 IP do Usuário", value: `||${ip}||`, inline: true },
+                            { name: "📆 Conta Criada", value: `\`há ${idadeConta}\``, inline: true },
+                            {
+                                name: "🔐 Informações Adicionais",
+                                value: `- 🌍 Localização: ${localizacao}\n- 💻 Dispositivo: ${dispositivo}`
+                            }
+                        )
+                        .toJSON()
+                ]
+            });
+        } catch (webhookError) {
+            console.error("Erro ao enviar webhook:", webhookError);
+        }
 
         // Salva os dados localmente
         await users.set(user.id, {
@@ -160,9 +186,15 @@ router.get("/auth/callback", async (req, res) => {
             code
         });
 
+        // Redireciona após processar tudo
+        res.redirect(`https://ghostapi.squareweb.app/`);
+
     } catch (err) {
         console.error("Erro no processo de autenticação:", err);
-        // Opcional: enviar erro ao webhook
+        return res.status(500).json({ 
+            message: "Ocorreu um erro ao processar a interação. Tente novamente.", 
+            status: 500 
+        });
     }
 });
 
