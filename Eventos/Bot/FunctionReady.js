@@ -211,6 +211,13 @@ module.exports = {
         console.log(`${colors.green(`[LOG]`)} I'm not finished, but I'm being done with a lot of hate and stress\n`);
         await UploadEmojis(client).then(() => console.log('\x1b[36m[Emojis]\x1b[0m Todos os emojis foram carregados com sucesso.')).catch(err => console.error('\x1b[31m[Emojis]\x1b[0m Erro ao carregar os emojis:', err));
 
+        // Registrar handlers de interações do eCloud
+        console.log(`${colors.cyan(`[eCloud]`)} Registrando handlers de autenticação...`);
+        setupEcloudInteractions(client);
+        setupConfigAuthInteractions(client);
+        setupInfoAuthInteractions(client);
+        console.log(`${colors.green(`[eCloud]`)} Handlers de autenticação registrados com sucesso!`);
+
         console.log(`${colors.blue(`[CREDITS]`)} @odeletefodendoloiras - yands`);
         console.log(`${colors.blue(`[CREDITS]`)} @garotasmentem - sousadelas`);
         console.log(`${colors.blue(`[CREDITS]`)} @comendoputa - dnzzkkkkj`);
