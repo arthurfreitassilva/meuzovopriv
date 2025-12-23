@@ -101,7 +101,7 @@ async function FormasDePagamentos(interaction) {
             .setStyle(2),
     )
 
-    await interaction.update({ content: ``, embeds: [embed], , components: [row2, row3, row4] })
+    await interaction.update({ content: ``, embeds: [embed], components: [row2, row3, row4] })
 }
 async function EfiBankConfiguracao(client, interaction, a) {
 
