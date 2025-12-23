@@ -79,7 +79,7 @@ async function Avançados(interaction, client) {
         .setDisabled(false),
     )
 
-    interaction.update({ embeds: [embed], components: [row], content: '', ephemeral: true})
+    interaction.update({ embeds: [embed], components: [row], content: '', })
 
 
 }
@@ -163,7 +163,7 @@ async function Emojis24(interaction, client) {
         .setStyle(2),
     )
 
-    interaction.update({ embeds: [embed], components: [row], content: '', ephemeral: true})
+    interaction.update({ embeds: [embed], components: [row], content: '', })
 
 }
 
@@ -206,7 +206,7 @@ async function Perms24(interaction, client) {
         .setStyle(2),
     )
 
-    interaction.update({ embeds: [embed], components: [row], content: '', ephemeral: true})
+    interaction.update({ embeds: [embed], components: [row], content: '', })
 
 }
 

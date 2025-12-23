@@ -52,7 +52,7 @@ const row24 = new ActionRowBuilder().addComponents(
         .setStyle(2)
 );
 
-await interaction.update({ embeds: [embed], content: ``, ephemeral: true, components: [row24] });
+await interaction.update({ embeds: [embed], content: ``, , components: [row24] });
 }
 
 module.exports = {

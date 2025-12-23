@@ -34,7 +34,7 @@ async function configqrcode(interaction, client) {
     .setTitle("Configuração de QRCode");
 
   if (interaction.message) {
-    await interaction.update({ content: null, components: [row2, botoesvoltar], embeds: [embed], ephemeral: true })
+    await interaction.update({ content: null, components: [row2, botoesvoltar], embeds: [embed],  })
   }
 }
 

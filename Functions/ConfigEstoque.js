@@ -41,7 +41,7 @@ function MessageStock(interaction, stat, prod, camp, update, reply) {
         } else {
 
             if (reply !== true) {
-                interaction.update({ embeds: [], content: `Selecione um método.`, components: [row2, row3], ephemeral: true, fetchReply: true }).then(async msg => {
+                interaction.update({ embeds: [], content: `Selecione um método.`, components: [row2, row3], , fetchReply: true }).then(async msg => {
                     db.set(interaction.message.id, { name: prod, camposelect: camp })
                 })
             }else{
