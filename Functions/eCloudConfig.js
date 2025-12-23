@@ -153,8 +153,9 @@ function setupEcloudInteractions(client) {
                 if (interaction.customId === "acoestu21") {
                     const configPath = path.resolve(__dirname, '../DataBaseJson/configauth.json');
                     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-                    const { obrigatorioverify } = config;
-
+                    const { obrigatorioverify, role } = config;
+                    
+                    const cargoVerificado = interaction.guild.roles.cache.get(role);
                     const statusVerificacao = obrigatorioverify === "true" ? "\`🟢 Habilitado\`" : "\`🔴 Desabilitado\`";
 
                     const embed = new EmbedBuilder()
